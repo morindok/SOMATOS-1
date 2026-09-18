@@ -1,0 +1,24 @@
+# SOMATOS-1 Isolated Chamber Materials
+newmtl ChamberWall
+Ka 0.1 0.1 0.1
+Kd 0.35 0.38 0.42
+Ks 0.25 0.25 0.25
+Ns 30.0
+d 1.0
+map_Kd isolated_chamber_wall.png
+
+newmtl ChamberFloor
+Ka 0.1 0.1 0.1
+Kd 0.2 0.22 0.25
+Ks 0.1 0.1 0.1
+Ns 10.0
+d 1.0
+map_Kd isolated_chamber_wall.png
+
+newmtl ChamberCeiling
+Ka 0.05 0.05 0.05
+Kd 0.18 0.19 0.21
+Ks 0.1 0.1 0.1
+Ns 15.0
+d 1.0
+map_Kd isolated_chamber_wall.png

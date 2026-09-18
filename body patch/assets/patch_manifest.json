@@ -1,0 +1,87 @@
+{
+  "patch_name": "SOMATOS-1 Realistic Human Body & Face Visual Upgrade Patch",
+  "patch_version": "2.4.0-REALISTIC-PBR",
+  "release_date": "2026-09-18",
+  "description_fa": "پچ ارتقاء گرافیک ظاهری بدن انسان به بافت و ساختار واقع‌گرایانه، چهره با اجزای کامل آناتومیک و چشم‌های واقعی، قابل ادغام با هوش مصنوعی opencode.ai",
+  "description_en": "High-fidelity photorealistic visual upgrade for SOMATOS-1 human model, featuring anthropometrically accurate facial contours, eyes, lips, dermis PBR textures, and isolated 3D chamber environment.",
+  "rendering_specifications": {
+    "shading_model": "PBR_METALLIC_ROUGHNESS",
+    "subsurface_scattering": {
+      "epidermal_layer_thickness_mm": 0.12,
+      "dermal_layer_thickness_mm": 1.4,
+      "scatter_color_rgb": [
+        0.85,
+        0.4,
+        0.32
+      ],
+      "subdermal_blood_tint": "#a1231a"
+    },
+    "facial_topography": {
+      "vertex_count": 1944,
+      "face_count": 3840,
+      "features_modeled": [
+        "Vertex & Forehead curvature",
+        "Supraorbital brow ridges",
+        "Ocular orbits & 24mm dual eye globes",
+        "Nasal bridge, dorsum, pronasale tip, alae nostrils",
+        "Philtrum groove & Cupid's bow",
+        "Upper vermilion & lower lip tubercles",
+        "Mental protuberance chin & mandibular jawline",
+        "Auricular ears (helix, antihelix, tragus, lobule)",
+        "Cervical neck transition to clavicles"
+      ]
+    },
+    "isolated_chamber": {
+      "dimensions_meters": [
+        4.0,
+        4.0,
+        3.2
+      ],
+      "volume_m3": 51.2,
+      "isolation_mode": "STRICT_HERMETIC_ZERO_FLUX"
+    }
+  },
+  "opencode_ai_bridge_compatible": true,
+  "files": {
+    "human_head_realistic.obj": {
+      "size_bytes": 342758,
+      "sha256": "83681a6fb329ed1cb25909bc3780eb34abde707e47f1495c94818c17771da5b1"
+    },
+    "human_head_realistic.mtl": {
+      "size_bytes": 346,
+      "sha256": "010e9bea65b39c338567b23762814bc09532c68aaae920f1f74e33673d1efa29"
+    },
+    "human_body_realistic.obj": {
+      "size_bytes": 74671,
+      "sha256": "c40005bd322540fc60d814882255fdb19ec2c6cb9847dc0ace7c5a89d0507b2b"
+    },
+    "human_body_realistic.mtl": {
+      "size_bytes": 239,
+      "sha256": "bf4286cc6497275193eb0ea90f277cfb2ad58e7420e81cf08fe4e4f0aeb442d0"
+    },
+    "isolated_chamber.obj": {
+      "size_bytes": 957,
+      "sha256": "a3f56d72af73793014da76147bd0de5aa293e5b94318658829188585d49f9fdf"
+    },
+    "isolated_chamber.mtl": {
+      "size_bytes": 392,
+      "sha256": "93ed57572d45ce3bb695e00c8d038807804b57b9cb978bba3a9227bbfd0c8397"
+    },
+    "realistic_face_albedo.png": {
+      "size_bytes": 1735898,
+      "sha256": "010ec63c04cc3251bb15021169d5aeced3479b429d6b5cb229fc37cbf93729e0"
+    },
+    "realistic_eye_iris.png": {
+      "size_bytes": 1709989,
+      "sha256": "21de9940220663fec363486fc9944670bffa87c38a7c1f86d5360e7bc2678f8f"
+    },
+    "realistic_skin_dermis.png": {
+      "size_bytes": 1890742,
+      "sha256": "8317cf2b42cb890105592c3bbbe237a072e57f78c3e9ad18d1cabe3ccff599cc"
+    },
+    "isolated_chamber_wall.png": {
+      "size_bytes": 1859883,
+      "sha256": "90a226b12d95cba9fa9cfa7f216fe8f5e38f7b0c9555228b28388501de15462a"
+    }
+  }
+}
