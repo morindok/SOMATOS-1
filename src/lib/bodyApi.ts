@@ -484,8 +484,8 @@ export async function executeBodyCommand(
       const fwd = new THREE.Vector3(0, 0, 1).applyAxisAngle(new THREE.Vector3(0, 1, 0), THREE.MathUtils.degToRad(neckRotY));
       const origin = new THREE.Vector3(0, 1.6, 0);
       const ray = new THREE.Raycaster(origin, fwd, 0, 4);
-      const candidates = [];
-      b.group.traverse((o) => { if (o.isMesh) candidates.push(o); });
+      const candidates: THREE.Object3D[] = [];
+      b.group.traverse((o) => { if ((o as THREE.Mesh).isMesh) candidates.push(o); });
       const hits = ray.intersectObjects(candidates, false);
       if (hits.length > 0) {
         const h = hits[0].point;

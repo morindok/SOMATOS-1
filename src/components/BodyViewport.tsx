@@ -3,6 +3,11 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { buildRoom, ROOM } from '../three/roomBuilder';
 import { buildBody, animateBody, queueMotorImpulse, setJointTarget, getJointCurrent, type BodyRefs, type VitalParams, BODY_FOCUS, MICRO_FOCUS } from '../three/humanBuilder';
+import { buildNoraBody } from '../three/noraBuilder';
+
+// NORA is the active body — the feminine variant with silver hair & moon crown.
+// Set to 'classic' to restore the original anatomical body.
+const BODY_VARIANT: 'nora' | 'classic' = 'nora';
 import { getBrain, MOTOR_POOL_JOINTS } from '../lib/brain';
 import { getMetabolism } from '../lib/metabolism';
 import { getLimbic, setCircadianState } from '../lib/limbic';
@@ -176,7 +181,7 @@ export default function BodyViewport({
     scene.add(microSpot, microSpot.target);
 
     buildRoom(scene);
-    const body = buildBody(scene);
+    const body = BODY_VARIANT === 'nora' ? buildNoraBody(scene) : buildBody(scene);
     state.current.body = body;
     bodyRefOut(body);
 
@@ -404,7 +409,7 @@ export default function BodyViewport({
           <span className="font-mono text-[10px] tracking-widest text-red-200">SEALED · ایزوله · NO I/O</span>
         </div>
         <div className="rounded-md border border-teal-500/30 bg-slate-950/60 px-2.5 py-1 backdrop-blur">
-          <span className="font-mono text-[10px] tracking-widest text-teal-200">SOMATOS-1 · 1.70 m · 206 BONES</span>
+          <span className="font-mono text-[10px] tracking-widest text-teal-200">NORA · SOMATOS-1 · 1.70 m</span>
         </div>
       </div>
       <div className="pointer-events-none absolute bottom-3 left-3 rounded-md border border-white/10 bg-slate-950/60 px-2.5 py-1 backdrop-blur" dir="ltr">
