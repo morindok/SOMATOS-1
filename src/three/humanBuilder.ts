@@ -34,7 +34,7 @@ export interface BodyRefs {
   muscle: Record<string, { a: number; f: number; hy: number; vx: number; vy: number; vz: number }>;
 }
 
-const M = (color: number, o: { e?: number; ei?: number; r?: number; m?: number; o?: number; t?: boolean; flat?: boolean } = {}) =>
+export const M = (color: number, o: { e?: number; ei?: number; r?: number; m?: number; o?: number; t?: boolean; flat?: boolean } = {}) =>
   new THREE.MeshStandardMaterial({
     color,
     roughness: o.r ?? 0.55,
@@ -50,7 +50,7 @@ const M = (color: number, o: { e?: number; ei?: number; r?: number; m?: number; 
 const FLUSH_COLOR = new THREE.Color(0xd96a4e);
 const PALE_COLOR = new THREE.Color(0xc9c2bd);
 
-const MAT = {
+export const MAT = {
   bone: () => M(0xe9e4d6, { r: 0.5 }),
   cartilage: () => M(0xbcd3dd, { r: 0.35 }),
   muscle: () => M(0xa8322b, { r: 0.6 }),
@@ -77,7 +77,7 @@ const MAT = {
   diaphragm: () => M(0xb0503f, { r: 0.6 }),
 };
 
-function mesh(
+export function mesh(
   parent: THREE.Object3D, geo: THREE.BufferGeometry, mat: THREE.Material,
   x: number, y: number, z: number, partId: string, system: string,
   cast = true,
@@ -92,12 +92,12 @@ function mesh(
   return m;
 }
 
-const cap = (r: number, len: number) => new THREE.CapsuleGeometry(r, len, 6, 14);
-const cyl = (rt: number, rb: number, h: number, s = 14) => new THREE.CylinderGeometry(rt, rb, h, s);
-const sph = (r: number, w = 20, h = 16) => new THREE.SphereGeometry(r, w, h);
-const box = (w: number, h: number, d: number) => new THREE.BoxGeometry(w, h, d);
+export const cap = (r: number, len: number) => new THREE.CapsuleGeometry(r, len, 6, 14);
+export const cyl = (rt: number, rb: number, h: number, s = 14) => new THREE.CylinderGeometry(rt, rb, h, s);
+export const sph = (r: number, w = 20, h = 16) => new THREE.SphereGeometry(r, w, h);
+export const box = (w: number, h: number, d: number) => new THREE.BoxGeometry(w, h, d);
 
-function joint(parent: THREE.Object3D, id: string, x: number, y: number, z: number, refs: BodyRefs): THREE.Group {
+export function joint(parent: THREE.Object3D, id: string, x: number, y: number, z: number, refs: BodyRefs): THREE.Group {
   const g = new THREE.Group();
   g.name = 'joint_' + id;
   g.position.set(x, y, z);
@@ -108,7 +108,7 @@ function joint(parent: THREE.Object3D, id: string, x: number, y: number, z: numb
 }
 
 // ---------- text sprite for micro-stage labels ----------
-function makeLabel(text: string, sub: string): THREE.Sprite {
+export function makeLabel(text: string, sub: string): THREE.Sprite {
   const c = document.createElement('canvas');
   c.width = 640; c.height = 150;
   const ctx = c.getContext('2d')!;
@@ -138,7 +138,7 @@ function makeLabel(text: string, sub: string): THREE.Sprite {
 // maps planarly onto the face texture with its feature rows (eyes/mouth/chin)
 // anchored to the matching sculpted landmarks, while the back of the head
 // slides onto the texture's skin-tone edge columns.
-function sculptHeadFace(geo: THREE.SphereGeometry, r: number) {
+export function sculptHeadFace(geo: THREE.SphereGeometry, r: number) {
   const pos = geo.attributes.position as THREE.BufferAttribute;
   const uv = geo.attributes.uv as THREE.BufferAttribute;
   const g2 = (v: number, s: number) => Math.exp(-(v * v) / (2 * s * s));
@@ -531,6 +531,15 @@ export function buildBody(scene: THREE.Scene): BodyRefs {
   }
 
   // ---------------- MICRO STAGE (side examination platform) ----------------
+  buildMicroStage(scene, refs);
+
+  return refs;
+}
+
+
+// ---------- micro stage (shared by buildBody and buildNoraBody) ----------
+export function buildMicroStage(scene: THREE.Scene, refs: BodyRefs): void {
+  // ---------------- MICRO STAGE (side examination platform) ----------------
   const micro = refs.micro;
   micro.position.set(-2.05, 0, -0.7);
   scene.add(micro);
@@ -668,8 +677,6 @@ export function buildBody(scene: THREE.Scene): BodyRefs {
   refs.microModels.tissue = tissue;
 
   for (const k of Object.keys(refs.microModels)) refs.microModels[k].visible = false;
-
-  return refs;
 }
 
 // ---------- joint control (degrees, clamped to anatomical ROM) ----------
