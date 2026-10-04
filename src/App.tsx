@@ -8,6 +8,7 @@ import BrainPanel from './components/BrainPanel';
 import EmbodimentHUD from './components/EmbodimentHUD';
 import { LayerRail, SystemToggles, DetailPanel } from './components/Panels';
 import AiBridge from './components/AiBridge';
+import NoraLink from './components/NoraLink';
 import { SYSTEMS, LAYERS, ANATOMY_PARTS, type AnatomicalPart } from './data/anatomy';
 import {
   setMicroLayer, flashPart, clearFlash, setHornGrowth, BODY_FOCUS,
@@ -402,6 +403,7 @@ export default function App() {
               <VitalsPanel vitalsRef={vitalsRef} bpm={bpm} setBpm={setBpm} brpm={brpm} setBrpm={setBrpm} running={running} />
               <BrainPanel />
               <AiBridge ctx={ctx} bridgeOn={bridgeOn} setBridgeOn={setBridgeOn} />
+              <NoraLink ctx={ctx} />
               <EmbodimentHUD bodyRef={bodyRef} vitalsRef={vitalsRef} audioRef={audioRef} />
             </div>
 
